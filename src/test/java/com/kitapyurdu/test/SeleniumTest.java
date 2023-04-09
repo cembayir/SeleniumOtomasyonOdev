@@ -6,13 +6,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
-import javax.xml.bind.annotation.XmlElementDecl;
 import java.util.List;
 import java.util.Random;
 
-public class ProductTest extends BaseTest {
+public class SeleniumTest extends BaseTest {
 
     @Test
     public void productTest(){
@@ -28,7 +26,7 @@ public class ProductTest extends BaseTest {
         methods.click(By.id("js-popup-accept-button"));
         methods.click(By.xpath("//button[@class='ky-btn ky-btn-orange w-100 ky-login-btn']"));
         methods.waitBySeconds(5);
-        /*
+
         //Oyuncak yazıp arama yaptırma.
         methods.sendKeys(By.id("search-input"),"Oyuncak");
         methods.click(By.cssSelector(".common-sprite.button-search"));
@@ -53,8 +51,6 @@ public class ProductTest extends BaseTest {
         methods.waitBySeconds(2);
         Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[3]/div/div/div[1]/h2")).getText().contains("Ürün başarılı bir şekilde favorilerinize eklendi!"));
 
-
-
         //Ana sayfaya dönüş.
         methods.click(By.xpath("//div[@class='logo-icon']"));
         methods.waitBySeconds(2);
@@ -64,7 +60,6 @@ public class ProductTest extends BaseTest {
         methods.waitBySeconds(3);
 
         //Türk Klasiklerini seçtirme.
-        //methods.click(By.xpath("//div[@class='landing-block']//a[2]"));
         methods.click(By.xpath("/html/body/div[5]/div/div/div[2]/div/div[4]/a[2]/img"));
         methods.waitBySeconds(3);
 
@@ -98,7 +93,6 @@ public class ProductTest extends BaseTest {
         methods.waitBySeconds(2);
 
         //Sepete ekleme.
-        //methods.click(By.xpath("/html/body/div[5]/div/div/div[8]/div/div[2]/div[2]/div[2]/div[1]/div[1]/div[4]/a"));
         methods.click(By.xpath("//a[@id='button-cart']"));
         methods.waitBySeconds(3);
 
@@ -119,15 +113,13 @@ public class ProductTest extends BaseTest {
         methods.waitBySeconds(2);
 
         //Sepette ürün adedi artırımı.
-        //methods.click(By.xpath("/html/body/div[5]/div/div/div[2]/div/div[1]/table/tbody/tr[1]/td[4]/form/input[1];"));
-        //driver.findElement(By.xpath("/html/body/div[5]/div/div/div[2]/div/div[1]/table/tbody/tr[1]/td[4]/form/input[1]")).clear();
         WebElement input = methods.findElement(By.xpath("//input[@name='quantity']"));
         input.clear();
         input.sendKeys("3");
         input.submit();
         methods.waitBySeconds(2);
 
-        //Satın al'a tıklanır.
+        //Satın al'a tıklama.
         methods.click(By.xpath("//div[@class='right']"));
         methods.waitBySeconds(3);
 
@@ -152,9 +144,6 @@ public class ProductTest extends BaseTest {
         methods.selectByText(By.xpath("//select[@id='address-county-id']"),"KARTAL");
         methods.waitBySeconds(2);
 
-        //methods.getSelect(By.xpath("//input[@id='district']")).selectByVisibleText("SOĞANLIK YENİ MAH");
-        //methods.waitBySeconds(3);
-
         WebElement inputMahalle = methods.findElement(By.xpath("//input[@id='district']"));
         inputMahalle.sendKeys("SOĞANLIK YENİ MAH");
         methods.waitBySeconds(3);
@@ -178,7 +167,6 @@ public class ProductTest extends BaseTest {
         methods.waitBySeconds(3);
 
         //Yanlış kart bilgilerinin girilmesi.
-
         WebElement inputKartAd = methods.findElement(By.xpath("//input[@id='credit-card-owner']"));
         inputKartAd.sendKeys("TEST OTOMASYON");
         methods.waitBySeconds(2);
@@ -197,7 +185,6 @@ public class ProductTest extends BaseTest {
         inputGuvenlikcod.sendKeys("123");
         methods.waitBySeconds(2);
 
-
         //Devam butonuna tıklanması
         methods.click(By.xpath("//button[@id='button-checkout-continue']"));
         methods.waitBySeconds(3);
@@ -210,23 +197,10 @@ public class ProductTest extends BaseTest {
         methods.click(By.xpath("//a[@class='checkout-logo']"));
         methods.waitBySeconds(2);
 
-         */
-
         //Logout olunması.
-
-        driver.findElement(By.xpath("//div[@class='menu top login']")).click();
-        methods.waitBySeconds(3);
-        driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[1]/div[1]/ul/li/div/ul/li[4]")).click();
-        methods.waitBySeconds(3);
-
-        /*
-        methods.click(By.xpath("/html/body/div[1]/div[2]/div/div[1]/div[1]/ul/li/a"));
-        methods.waitBySeconds(3);
-        methods.click(By.xpath("/html/body/div[1]/div[2]/div/div[1]/div[1]/ul/li/div/ul/li[4]/a"));
-        // methods.selectByText(By.xpath("/html/body/div[1]/div[2]/div/div[1]/div[1]/ul/li/div/ul/li[4]/a"),"Çıkış");
-        methods.waitBySeconds(3);
-
-         */
+        methods.scrollWithAction(By.xpath("//*[@class='menu top login']//ul//li//a"));
+        methods.waitBySeconds(2);
+        methods.click(By.xpath("//*[@class='menu top login']//ul//li//div//ul//li[4]//a"));
 
     }
 }
